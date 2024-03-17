@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS procure;
 CREATE DATABASE procure;
 USE procure;
 
@@ -6,7 +7,14 @@ CREATE TABLE User(
     phone VARCHAR(20) PRIMARY KEY NOT NULL UNIQUE ,
     name VARCHAR(20) NOT NULL ,
     sex VARCHAR(2) NOT NULL ,
-    userType INT NOT NULL
+    userType INT NOT NULL ,
+    UNIQUE INDEX (phone)
+);
+# 种类表
+CREATE TABLE Type(
+    typeID INT NOT NULL UNIQUE ,
+    typeName VARCHAR(20) NOT NULL ,
+    UNIQUE INDEX (typeID)
 );
 
 # 商品表
@@ -16,7 +24,8 @@ CREATE TABLE Item(
     quantity BIGINT NOT NULL ,
     description VARCHAR(30) ,
     price DECIMAL(10,2) NOT NULL ,
-    type INT NOT NULL ,
+    type INT NOT NULL REFERENCES Type(typeID),
+    picPath VARCHAR(20) NOT NULL ,
     UNIQUE INDEX (id)
 );
 
@@ -65,3 +74,8 @@ END;
 //
 
 DELIMITER ;
+
+INSERT INTO Type VALUES (0,'蔬菜'),(1,'肉类');
+
+INSERT INTO item VALUE (0,'西红柿',100,'干净又卫生',2.0,0,'0.jpeg');
+INSERT INTO item VALUE (1,'扣肉',100,'好吃又美味',5.0,1,'1.jpg');
