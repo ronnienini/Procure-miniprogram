@@ -53,7 +53,7 @@ Page({
     var me = this;
     console.log("ddd")
     wx.request({
-      url: 'http://localhost:8080/cate/products', // 替换为你的商品数据接口地址
+      url: 'http://localhost:8080/cate', // 替换为你的商品数据接口地址
       method: 'GET',
       success: res => {
         if (res.statusCode === 200) {
