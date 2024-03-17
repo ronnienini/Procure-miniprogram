@@ -51,6 +51,25 @@ Page({
   onLoad: function (options) {
     // Do some initialize when page load.
     var me = this;
+    console.log("ddd")
+    wx.request({
+      url: 'http://localhost:8080/cate/products', // 替换为你的商品数据接口地址
+      method: 'GET',
+      success: res => {
+        if (res.statusCode === 200) {
+          console.log(res.data);
+          // 异步请求成功后更新页面数据
+          this.setData({
+            products: res.data // 更新商品数据数组
+          });
+        } else {
+          console.error('Failed to fetch products');
+        }
+      },
+      fail: err => {
+        console.error('Failed to fetch products', err);
+      }
+    });
     
 
     //获取设备窗口信息

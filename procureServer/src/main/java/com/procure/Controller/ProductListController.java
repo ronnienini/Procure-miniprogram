@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductListController {
     @GetMapping("/cate/products")
     public ResponseEntity test(){
+        System.out.println("成功调用");
         return ResponseEntity.ok("test");
     }
 
