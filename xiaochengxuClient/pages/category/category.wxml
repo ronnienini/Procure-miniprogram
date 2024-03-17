@@ -1,17 +1,31 @@
-<view style="flex-direction:row;" class="flex-wrp">
-  <scroll-view class="first-category" style="height: {{windowHeight}}px;" scroll-y="true">
-    <view wx:for="{{array}}" id="category{{index}}" bindtap="toggleCategory" class="category-item">
-      {{item.message}}
-    </view>
-  </scroll-view>
-  <scroll-view class="second-category" style="height: {{windowHeight}}px;" scroll-y="true">
-    <view wx:for="{{childCategory}}" wx:for-index="idx">
-      <text class="category-title">{{item.title}}</text>
-      <view>
-        <view wx:for="{{item.array}}" class="col-4 category-name">
-          {{item.name}}
+<view style="display: flex;">
+  <!-- 左侧固定宽度的分类列表 -->
+  <view class="left-sidebar" >
+    <scroll-view class="first-category" style="height: 100%;" scroll-y="true">
+      <view wx:for="{{types}}" wx:for-item="type" id="{{index}}" bindtap="toggleCategory" class="category-item">
+        {{type.typeName}}
+      </view>
+    </scroll-view>
+  </view>
+  
+  <!-- 右侧商品列表 -->
+  <view class="right-content" style="flex: 1;">
+    <scroll-view class="second-category" style="height: 100%;" scroll-y="true">
+      <view wx:for="{{childCategory}}" wx:for-index="idx">
+        <text class="category-title">{{item.title}}</text>
+        <view wx:for="{{item.array}}" class="product-block">
+          <!-- 商品图片 -->
+        <image src="{{item.image}}" class="product-image"></image>
+        <!-- 商品名称 -->
+        <text class="product-name">{{item.name}}</text>
+        <!-- 商品价格 -->
+        <text class="product-price">Price: {{item.price}}</text>
+        <!-- 商品描述 -->
+        <text class="product-desc">{{item.desc}}</text>
+        <!-- 商品数量 -->
+        <!-- <text class="product-quantity">Quantity: {{item.quantity}}</text> -->
         </view>
       </view>
-    </view>
-  </scroll-view>
+    </scroll-view>
+  </view>
 </view>
