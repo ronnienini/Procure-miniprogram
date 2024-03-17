@@ -104,7 +104,10 @@ Page({
             // 异步请求成功后更新页面数据
             this.setData({
               childCategory: res.data // 更新商品数据数组
+            },()=>{
+              console.log(this.data.childCategory)
             });
+            
           } else {
             console.error('Failed to fetch products');
           }
