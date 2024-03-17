@@ -1,4 +1,4 @@
-package com.procure.Entity;
+package com.procure.procureserver.Entity;
 
 import lombok.Data;
 

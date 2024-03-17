@@ -1,7 +1,7 @@
-package com.procure.Mapper;
+package com.procure.procureserver.Mapper;
 
-import com.procure.Entity.Item;
-import com.procure.Entity.Type;
+import com.procure.procureserver.Entity.Item;
+import com.procure.procureserver.Entity.Type;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

@@ -1,8 +1,8 @@
-package com.procure.Service;
+package com.procure.procureserver.Service;
 
-import com.procure.Entity.Item;
-import com.procure.Entity.Type;
-import com.procure.Mapper.ProductListMapper;
+import com.procure.procureserver.Entity.Item;
+import com.procure.procureserver.Entity.Type;
+import com.procure.procureserver.Mapper.ProductListMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +12,7 @@ import java.util.List;
 public class ProductListService {
 
     private final ProductListMapper mapper;
+
     @Autowired
     public ProductListService(ProductListMapper mapper) {
         this.mapper = mapper;

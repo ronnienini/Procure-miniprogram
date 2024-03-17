@@ -1,8 +1,8 @@
-package com.procure.Controller;
+package com.procure.procureserver.Controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.procure.Service.ProductListService;
+import com.procure.procureserver.Service.ProductListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,8 +44,7 @@ public class ProductListController {
     @GetMapping("/cate/image/{picName}")
     public byte[] getImage(@PathVariable String picName) throws IOException {
         Path imagePath= Paths.get(path+picName);
-        byte[] imageBytes = Files.readAllBytes(imagePath);
-        return imageBytes;
+        return Files.readAllBytes(imagePath);
     }
 
 }
