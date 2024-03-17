@@ -6,6 +6,7 @@ import com.procure.Service.ProductListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,9 +26,14 @@ public class ProductListController {
         return ResponseEntity.ok(json);
     }
     @GetMapping("/cate/products")
-    public ResponseEntity<String> getProduct(){
-        System.out.println("成功调用");
-        return ResponseEntity.ok("test");
+    public ResponseEntity<String> getProduct(@RequestParam int id){
+        String json="";
+        try {
+            json = mapper.writeValueAsString(service.getItemByID(id));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok(json);
     }
 
 }

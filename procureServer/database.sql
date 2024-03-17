@@ -78,4 +78,4 @@ DELIMITER ;
 INSERT INTO Type VALUES (0,'蔬菜'),(1,'肉类');
 
 INSERT INTO item VALUE (0,'西红柿',100,'干净又卫生',2.0,0,'0.jpeg');
-INSERT INTO item VALUE (1,'扣肉',100,'好吃又美味',5.0,1,'1.jpg');
+INSERT INTO item VALUE (0,'扣肉',100,'好吃又美味',5.0,1,'1.jpg');
