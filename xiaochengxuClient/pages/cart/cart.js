@@ -81,7 +81,7 @@ Page({
       wx.request({
         url: 'http://localhost:8080/cart/checkout',
         method:'POST',
-        data:Array.from(this.data.app.item_list),
+        data:Array.from(this.data.app.globalData.item_list),
         header: {
           'content-type': 'application/json' // 默认值，可根据接口需求修改
         },
