@@ -24,12 +24,14 @@
     /* background-color: azure; */
 }
 .product-block {
-  border: 4.00rpx solid #ccc; 
+  border: 4rpx solid #ccc; 
   border-radius: 20.00rpx;
   margin-bottom: 20.00rpx; 
   margin-right: 30.00rpx;
   padding: 20.00rpx; 
   display: flex; 
+  align-items: center; 
+  position: relative; /* 相对定位 */
 }
 .product-image {
   width: 200.00rpx; 
@@ -58,22 +60,27 @@
   color: #666666; 
 }
 .plus-button {
-  width: 50.00rpx; 
-  height: 50.00rpx; 
-  position: relative;
-  right: -110.00rpx; 
-  bottom: -150.00rpx; 
-  /* background-color: darkblue; */
+  width: 50rpx; 
+  height: 50rpx; 
+  position: absolute; /* 绝对定位 */
+  bottom: 15rpx; /* 相对于父元素的底部偏移量 */
+  right: 10rpx; /* 相对于父元素的右侧偏移量 */
 }
 .quantity-input {
-  position: relative; 
-  right: 10rpx; 
-  bottom: -80.00rpx; 
-  width: 160.00rpx; 
-  height: 60.00rpx; 
+  width: 160rpx; 
+  height: 60rpx; 
   border: 2rpx solid #ccc; 
-  padding: 10.00rpx; 
+  padding: 10rpx; 
+  position: absolute; /* 绝对定位 */
+  bottom: 60rpx; /* 相对于父元素的底部偏移量 */
+  right: 5rpx; /* 相对于父元素的右侧偏移量 */
 }
+.quantity-input::placeholder {
+  font-size: 10rpx !important; /* 设置 placeholder 字体大小 */
+  
+}
+
+
 .category-name{
     color:#999;
 }

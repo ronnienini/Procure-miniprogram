@@ -85,12 +85,12 @@ Page({
         header: {
           'content-type': 'application/json' // 默认值，可根据接口需求修改
         },
-        success: function (res) {
+        success: res=> {
           console.log(res.data); // 请求成功后的回调函数
           this.setData({cartItems:[]}) // =》告诉浏览器内核，要重新渲染当前页面
           //this.data.cartItems=[] //只是赋值，不影响页面展示
         },
-        fail: function (err) {
+        fail:err=> {
           console.error('Failed to send POST request', err); // 请求失败后的回调函数
           alert("网络异常，购买失败")
         }
