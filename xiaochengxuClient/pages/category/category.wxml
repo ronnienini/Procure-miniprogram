@@ -27,9 +27,13 @@
             <text class="product-quantity">库存： {{item.quantity}}</text>
           </view>
           <!-- 加号按钮 -->
-          <image src="../../image/plus2.png" class="plus-button" data-index="{{idx}}" bindtap="toggleInput"></image>
-          <!-- 输入框 -->
-          <input type="number" class="quantity-input" placeholder="请输入" hidden="{{!showInput[idx]}}" bindinput="inputChange" data-index="{{item.id}}"></input>
+          <image src="{{item.icon}}" class="plus-button" data-index="{{idx}}" bindtap="toggleInput"></image>
+          <!-- 显示输入框 -->
+          <input type="number" class="quantity-input" placeholder="请输入" wx:if="{{showInput[idx]}}" bindinput="inputChange" data-index="{{item.id}}" ></input>
+          <!-- 如果showInput为false，且item.inputValue不为0，则显示数量 -->
+          <text wx:else>{{item.inputValue}}</text>
+
+
 
         </view>
       </view>
