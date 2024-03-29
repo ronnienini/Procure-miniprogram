@@ -5,6 +5,8 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
+    this.globalData.item_list=new Map();
+    
   },
   getUserInfo:function(cb){
     var that = this
@@ -25,6 +27,7 @@ App({
     }
   },
   globalData:{
-    userInfo:null
+    userInfo:null,
+    item_list:null
   }
 })

@@ -1,16 +1,16 @@
 /* pages/category/category.wxss */
 .first-category{
   /* background-color: bisque; */
-  width:80px;
+  width:160.00rpx;
   font-size: 28rpx;
   text-align: center;
-  border: 1px solid #ccc;
+  /* border: 2.00rpx solid #ccc; */
 }
 .right-content {
   flex: 1;
   margin-right: 0;
   /* background-color: blueviolet; */
-  /* overflow: auto; 如果右侧内容过多，显示滚动条 */
+  /* overflow: auto;  */
 }
 .second-category{
     /* background-color:#566fa1; */
@@ -24,29 +24,56 @@
     /* background-color: azure; */
 }
 .product-block {
-  border: 1px solid #ccc; /* 商品块的边框样式 */
-  margin-bottom: 10px; /* 商品块之间的间距 */
-  margin-right:15px;
-  padding: 10px; /* 商品块的内边距 */
+  border: 4.00rpx solid #ccc; 
+  border-radius: 20.00rpx;
+  margin-bottom: 20.00rpx; 
+  margin-right: 30.00rpx;
+  padding: 20.00rpx; 
+  display: flex; 
 }
 .product-image {
-  width: 100px; /* 商品图片的宽度 */
-  height: 100px; /* 商品图片的高度 */
-  margin-bottom: 5px; /* 图片与其他信息之间的间距 */
+  width: 200.00rpx; 
+  height: 200.00rpx; 
+  margin-right: 20.00rpx; 
+}
+.product-details {
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  /* background-color: cadetblue; */
 }
 .product-name {
-  font-weight: bold; /* 商品名称加粗 */
-}
-.product-price {
-  color: #FF0000; /* 商品价格文本颜色 */
-}
-.product-desc {
-  margin-top: 5px; /* 商品描述与价格之间的间距 */
-}
-.product-quantity {
-  color: #666666; /* 商品数量文本颜色 */
+  font-weight: bold; 
 }
 
+.product-price {
+  color: #FF0000; 
+}
+
+.product-desc {
+  margin-top: 10.00rpx; 
+}
+
+.product-quantity {
+  color: #666666; 
+}
+.plus-button {
+  width: 50.00rpx; 
+  height: 50.00rpx; 
+  position: relative;
+  right: -110.00rpx; 
+  bottom: -150.00rpx; 
+  /* background-color: darkblue; */
+}
+.quantity-input {
+  position: relative; 
+  right: 10rpx; 
+  bottom: -80.00rpx; 
+  width: 160.00rpx; 
+  height: 60.00rpx; 
+  border: 2rpx solid #ccc; 
+  padding: 10.00rpx; 
+}
 .category-name{
     color:#999;
 }
@@ -54,9 +81,9 @@
     display: flex;
 }
 .category-item{
-    height: 50px;
-    line-height: 50px;
-    border-bottom:1px solid #ddd;
+    height: 100.00rpx;
+    line-height: 100.00rpx;
+    border: 2.00rpx solid #ccc;
 }
 .category-item:last-chid{
     border-bottom: 0;

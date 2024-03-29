@@ -1,5 +1,38 @@
 <!-- sample.wxml -->
-<view class="btn-area">
+<!-- <view class="btn-area">
   <navigator url="login?title=login" hover-class="login-hover">跳转到新页面</navigator>
+
+</view> -->
+<!-- cart.wxml -->
+<view class="cart-container">
+  <view class="cart-title">
+    <text>购物车</text>
+    <text class="clear-cart">清空购物车</text>
+  </view>
+  <view class="hr"></view>
+  <scroll-view class="cart-items" scroll-y="true">
+    <view wx:for="{{cartItems}}" wx:key="index" class="cart-item">
+      <view class="product-block">
+        <!-- 商品图片 -->
+        <image src="http://localhost:8080/cate/image/{{item.picPath}}" class="product-image"></image>
+        <view class="product-details">
+          <!-- 商品名称 -->
+          <text class="product-name">{{item.name}}</text>
+          <!-- 商品描述 -->
+          <text class="product-desc">{{item.description}}</text>
+          <!-- 商品价格 -->
+          <text class="product-price">￥{{item.price}}</text>
+          <!-- 商品数量 -->
+          <text class="product-quantity">数量：{{item.quantitySelected}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="footer">
+  <text>总价：</text>
+  <text class="total-price">{{ totalPrice }}</text>
+  <button class="checkout-button" bindtap="checkout">结算</button>
+</view>
+
 
 </view>

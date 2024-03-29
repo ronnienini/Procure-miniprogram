@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 public class Item {
     private Long id;
     private String name;
-    private String picName;
+    private String picPath;
     private Long quantity;
     private String description;
     private BigDecimal price;

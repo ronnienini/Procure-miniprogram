@@ -13,17 +13,24 @@
     <scroll-view class="second-category" style="height: 100%;" scroll-y="true">
       <view wx:for="{{childCategory}}" wx:for-index="idx">
         <text class="category-title">{{item.title}}</text>
-        <view wx:for="{{item.array}}" class="product-block">
-          <!-- 商品图片 -->
-        <image src="{{item.image}}" class="product-image"></image>
-        <!-- 商品名称 -->
-        <text class="product-name">{{item.name}}</text>
-        <!-- 商品价格 -->
-        <text class="product-price">Price: {{item.price}}</text>
-        <!-- 商品描述 -->
-        <text class="product-desc">{{item.desc}}</text>
-        <!-- 商品数量 -->
-        <!-- <text class="product-quantity">Quantity: {{item.quantity}}</text> -->
+        <view class="product-block">
+            <!-- 商品图片 -->
+          <image src="http://localhost:8080/cate/image/{{item.picPath}}" class="product-image"></image>
+          <view class="product-details">
+          <!-- 商品名称 -->
+            <text class="product-name">{{item.name}}</text>
+            <!-- 商品描述 -->
+            <text class="product-desc">{{item.description}}</text>
+            <!-- 商品价格 -->
+            <text class="product-price">￥: {{item.price}}</text>
+            <!-- 商品数量 -->
+            <text class="product-quantity">库存： {{item.quantity}}</text>
+          </view>
+          <!-- 加号按钮 -->
+          <image src="../../image/plus2.png" class="plus-button" data-index="{{idx}}" bindtap="toggleInput"></image>
+          <!-- 输入框 -->
+          <input type="number" class="quantity-input" placeholder="请输入购买数量" hidden="{{!showInput[idx]}}" bindinput="inputChange" data-index="{{item.id}}"></input>
+
         </view>
       </view>
     </scroll-view>

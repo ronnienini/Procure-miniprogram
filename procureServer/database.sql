@@ -80,3 +80,4 @@ INSERT INTO Type VALUE (1,"肉类");
 
 INSERT INTO Item VALUE (0,"西红",100,"干净又卫生",2.0,0,"0.jpeg");
 INSERT INTO Item VALUE (1,"扣肉",100,"好吃又美味",5.0,0,"1.jpg");
+INSERT INTO Item VALUE (2,"扣肉",100,"好吃又美味",5.0,1,"2.jpg");
