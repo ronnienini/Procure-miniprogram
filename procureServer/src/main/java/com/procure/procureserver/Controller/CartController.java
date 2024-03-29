@@ -23,6 +23,6 @@ public class CartController {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return ResponseEntity.ok("");
+        return ResponseEntity.ok(json);
     }
 }
