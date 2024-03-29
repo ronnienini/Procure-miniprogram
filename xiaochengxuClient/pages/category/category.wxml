@@ -29,7 +29,7 @@
           <!-- 加号按钮 -->
           <image src="../../image/plus2.png" class="plus-button" data-index="{{idx}}" bindtap="toggleInput"></image>
           <!-- 输入框 -->
-          <input type="number" class="quantity-input" placeholder="请输入购买数量" hidden="{{!showInput[idx]}}" bindinput="inputChange" data-index="{{item.id}}"></input>
+          <input type="number" class="quantity-input" placeholder="请输入" hidden="{{!showInput[idx]}}" bindinput="inputChange" data-index="{{item.id}}"></input>
 
         </view>
       </view>

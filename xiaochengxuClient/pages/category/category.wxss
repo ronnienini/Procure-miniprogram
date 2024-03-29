@@ -67,7 +67,7 @@
   right: 10rpx; /* 相对于父元素的右侧偏移量 */
 }
 .quantity-input {
-  width: 160rpx; 
+  width: 120rpx; 
   height: 60rpx; 
   border: 2rpx solid #ccc; 
   padding: 10rpx; 

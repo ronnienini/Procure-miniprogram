@@ -152,7 +152,13 @@ Page({
       
       const newShowInput = this.data.showInput.slice(); // 创建一个 showInput 的副本
       newShowInput[index] = !newShowInput[index]; // 切换对应商品的输入框显示状态
+      if(newShowInput[index]){
+        //加号切换成勾
+        
+      }else{
+        //点击勾：变加号，保留数量
 
+      }
       this.setData({
         showInput: newShowInput
       },()=>{
