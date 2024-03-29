@@ -19,6 +19,8 @@ public class IndexController {
     @PostMapping("/index/login")
     public ResponseEntity<String> login(@RequestBody String phone){
         int type=service.checkUser(phone);
+
+        return ResponseEntity.ok("");
     }
 
 }

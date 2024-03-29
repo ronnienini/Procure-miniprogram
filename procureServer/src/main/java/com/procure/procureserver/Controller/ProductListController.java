@@ -33,7 +33,6 @@ public class ProductListController {
     }
     @GetMapping("/cate/products/{id}")
     public ResponseEntity<String> getProduct(@PathVariable int id){
-        System.out.println(id);
         String json="";
         try {
             json = mapper.writeValueAsString(service.getItemByID(id));
