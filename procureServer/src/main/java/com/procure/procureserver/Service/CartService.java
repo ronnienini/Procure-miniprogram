@@ -34,6 +34,6 @@ public class CartService {
         for (int[] pair : pairs) {
             mapper.purchase(pair[0], pair[1]);
         }
-        return true;
+        return 0;
     }
 }
