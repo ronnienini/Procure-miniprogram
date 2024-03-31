@@ -31,7 +31,7 @@
           <!-- 显示输入框 -->
           <input type="number" class="quantity-input" placeholder="请输入" wx:if="{{showInput[idx]}}" bindinput="inputChange" data-index="{{item.id}}" ></input>
           <!-- 如果showInput为false，且item.inputValue不为0，则显示数量 -->
-          <text wx:else>{{item.inputValue}}</text>
+          <text class="input" wx:else>{{item.inputValue}}</text>
 
 
 

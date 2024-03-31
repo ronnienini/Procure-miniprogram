@@ -79,7 +79,12 @@
   font-size: 10rpx !important; /* 设置 placeholder 字体大小 */
   
 }
-
+.input{
+  color:rgb(235, 65, 65);
+  position: absolute; 
+  bottom: 80rpx; 
+  right: 20rpx; 
+}
 
 .category-name{
     color:#999;

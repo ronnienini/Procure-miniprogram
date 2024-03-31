@@ -43,7 +43,7 @@ Page({
 
 
   },
-  onLoad: function (options) {
+  onShow: function (options) {
     this.data.app=getApp();
     console.log(this.data.app)
     // Do some initialize when page load.
@@ -132,7 +132,6 @@ Page({
           // 如果数量为 0，则删除对应的键值对
           this.data.app.globalData.item_list.delete(index);
         }
-         
       }
     },
      isPositiveInteger:function(s) {

@@ -1,17 +1,8 @@
-// redirect.js navigator.js
-// Page({
-//   onLoad: function(options) {
-//     this.setData({
-//       title: options.title
-//     })
-//   }
-// })
-
 // cart.js
 Page({
   data: {
-    app:null,
-    cartItems: [  // 假设这是购物车中的商品列表数据
+    app: null,
+    cartItems: [ // 假设这是购物车中的商品列表数据
       {
         id: 1,
         picPath: '1.jpg',
@@ -19,7 +10,7 @@ Page({
         description: '这是商品1的描述',
         price: 50,
         quantity: 100,
-        quantitySelected: 1  // 默认选购数量为1
+        quantitySelected: 1 // 默认选购数量为1
       },
       {
         id: 2,
@@ -29,14 +20,15 @@ Page({
         price: 80,
         quantity: 50,
         quantitySelected: 1
-      }],
+      }
+    ],
     totalPrice: 0
   },
-  onShow:function (options) {
-    this.data.app=getApp();
+  onShow: function (options) {
+    this.data.app = getApp();
     var tCartItems = [];
     let promises = []; // 用于存放所有请求的 Promise 对象
-    
+
     // 遍历全局数据的 item_list，发起请求并将 Promise 对象放入数组中
     for (const [key, value] of this.data.app.globalData.item_list) {
 
@@ -45,7 +37,7 @@ Page({
           url: 'http://localhost:8080/cart/item/' + key,
           method: 'GET',
           success: res => {
-            res.data.quantitySelected=value
+            res.data.quantitySelected = value
             tCartItems.push(res.data);
             resolve(); // 请求成功时执行 resolve
           },
@@ -57,47 +49,102 @@ Page({
       });
       promises.push(promise); // 将 Promise 对象放入数组
     }
-    
+
     // 当所有请求完成后执行 setData 更新页面
     Promise.all(promises).then(() => {
-      let sum=0
-      tCartItems.forEach(item => {
-        sum+=item.quantitySelected*item.price
-      });
       this.setData({
-        cartItems: tCartItems,
-        totalPrice:sum
+        cartItems: tCartItems
       });
+      this.calculateTotal(tCartItems);
+
     }).catch(err => {
       console.error('Failed to fetch all cartItems', err);
     });
-  
   },
-  checkout(event){
-    console.log(event);
-    //跳出支付页面先空着
-    let purchase=true;
-    if(purchase){//支付成功
-      wx.request({
-        url: 'http://localhost:8080/cart/checkout',
-        method:'POST',
-        data:Array.from(this.data.app.globalData.item_list),
-        header: {
-          'content-type': 'application/json' // 默认值，可根据接口需求修改
-        },
-        success: res=> {
-          console.log(res.data); // 请求成功后的回调函数
-          this.setData({cartItems:[]}) // =》告诉浏览器内核，要重新渲染当前页面
-          //this.data.cartItems=[] //只是赋值，不影响页面展示
-        },
-        fail:err=> {
-          console.error('Failed to send POST request', err); // 请求失败后的回调函数
-          alert("网络异常，购买失败")
+  reserve(event) {
+    wx.request({
+      url: 'http://localhost:8080/cart/reserve',
+      method: 'POST',
+      data: Array.from(this.data.app.globalData.item_list),
+      header: {
+        'content-type': 'application/json' // 默认值，可根据接口需求修改
+      },
+      success: res => {
+        console.log(res);
+        console.log(res.data); // 请求成功后的回调函数
+        if (res.data.tryReserve) {//如果库存足够
+          this.checkout(res.data.orderID)
+        } else {
+          this.reserveFail(res.data.itemName) 
         }
+      },
+      fail: err => {
+        console.error('Failed to send POST request', err); // 请求失败后的回调函数
+        wx.showToast({
+          title: '网络异常，购买失败',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    })
+  },
+  checkout(orderID) {
+    //弹出支付按钮
+    //wv返回支付是否成功
+    let pay=true;
+    if (pay /*默认支付成功 */ ) {
+      wx.showToast({
+        title: '支付失败',
+        icon: 'none',
+        duration: 2000
       })
-    }else{
-      alert("支付失败")
+      return;
     }
+    wx.request({
+      url: 'http://localhost:8080/cart/checkout',
+      method: 'POST',
+      data: {
+        orderID: orderID,
+        cash:pay?this.data.totalPrice:0
+      },
+      header: {
+        'content-type': 'application/json' // 默认值，可根据接口需求修改
+      },
+      success: res => {
+        console.log(res.data); // 请求成功后的回调函数
+        // if (true/*res.data.paymentSuccess*/) {
+        // 支付成功，清空购物车
+        this.clearCart();
+        wx.showToast({
+          title: '支付成功',
+          icon: 'success',
+          duration: 2000
+        });
+
+      },
+      fail: err => {
+        console.error('Failed to send POST request', err); 
+        wx.showToast({
+          title: '网络异常，支付失败',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    });
+  },
+  reserveFail(itemNames) {
+    const message = itemNames.join(',') + ' 库存不足';
+    wx.showToast({
+      title: message,
+      icon: 'none',
+      duration: 2000
+    });
+  },
+  clearCart() {
+    this.setData({
+      cartItems: [] // 清空购物车列表
+    });
+    this.data.app.globalData.item_list.clear()
   },
   // 增加商品数量
   increaseQuantity(event) {
@@ -128,6 +175,15 @@ Page({
       totalPrice: this.calculateTotal(products)
     });
   },
+  calculateTotal(tCartItems) {
+    let sum = 0
+    tCartItems.forEach(item => {
+      sum += item.quantitySelected * item.price
+    });
+    this.setData({
+      totalPrice: sum
+    });
+  }
 
- 
+
 });

@@ -7,7 +7,7 @@
 <view class="cart-container">
   <view class="cart-title">
     <text>购物车</text>
-    <text class="clear-cart">清空购物车</text>
+    <text class="clear-cart" bind:tap="clearCart">清空购物车</text>
   </view>
   <view class="hr"></view>
   <scroll-view class="cart-items" scroll-y="true">
@@ -31,7 +31,7 @@
   <view class="footer">
   <text>总价：</text>
   <text class="total-price">{{ totalPrice }}</text>
-  <button class="checkout-button" bindtap="checkout">结算</button>
+  <button class="checkout-button" bind:tap="reserve">结算</button>
 </view>
 
 
